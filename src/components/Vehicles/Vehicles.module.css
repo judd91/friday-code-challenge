@@ -53,21 +53,21 @@
     padding:1em 1.2em;
     margin-top: 0.3em;
     text-decoration:none;
-    font-family:'Roboto',sans-serif;
+    /* font-family:'Roboto',sans-serif; */
     font-weight:300;
     color:#FFFFFF;
     background-color: rgb(126, 87, 194);
     text-align:center;
     transition: all 0.2s;
     border: 0;
-    width: 50px;
+    /* width: 50px; */
     height: 50px;
-    display: grid;
+    /* display: grid;
     grid-template-areas: "select";
     grid-auto-flow: column;
-    align-items: center;
+    align-items: center; */
     cursor: pointer;
-    border-radius: 50%;
+    border-radius: 2em;
     display: inline-block;
     
   }
@@ -77,3 +77,19 @@
     justify-content: center;
     padding-bottom: 5%;
   }
+
+  .plusicon{
+    display: none;
+  }
+
+  @media screen and (max-width: 300px) {
+    .btnMore{
+      width: 50px; 
+    }
+    .buttonText {
+        display: none;
+    }
+    .plusicon{
+      display: block;
+    }
+}

@@ -6,6 +6,7 @@ const Vehicles = (props) => {
     let context = useContext(DataContext);
     const postsPerPage = 10
     const [start, setStart] = useState(10)
+    const [currentNumberOfVehicles, setcurrentNumberOfVehicles] = useState(postsPerPage)
     let arrayForHoldingPosts = []
     
     const handleShowMorePosts = (start) => {
@@ -15,6 +16,7 @@ const Vehicles = (props) => {
         // console.log("context.state.vehiclesToShow", context.state.vehiclesToShow)
         arrayForHoldingPosts = context.state.vehiclesToShow.concat(slicedPosts)
         setStart(start + postsPerPage)
+        setcurrentNumberOfVehicles(arrayForHoldingPosts.length)
         context.updateValue("vehiclesToShow", arrayForHoldingPosts)
     }
 
@@ -44,7 +46,11 @@ const Vehicles = (props) => {
                     </div>
                     <div>
                         <div className={styles.btnContainer}>
-                            <button className={styles.btnMore} onClick={()=> handleShowMorePosts(start)}>+</button>
+                            <p>Showing {currentNumberOfVehicles} of {context.state.vehicles.length} vehicles</p>
+                            <button className={styles.btnMore} onClick={()=> handleShowMorePosts(start)}>
+                                <span className={styles.plusicon}>+</span>
+                                <span className={styles.buttonText}>Show more</span>
+                            </button>
                         </div>
                     </div>
                     </div>

@@ -87,11 +87,12 @@ const Selector = (props) => {
     }
 
     function selectModel(item1, item2) {
-        context.updateValue("vehicles", null)
         setDataModelshowed(allDataModelshowed)
         setOpensModels(!isOpenModels)
         setModel(item1)
         runFetch(item1, item2)
+        context.updateValue("vehicles", null)
+
     }
 
     function handleChange(e, value) {
@@ -101,9 +102,9 @@ const Selector = (props) => {
             });
             setDatashowed(datashowed)
         }
-        else if (value == "model" && dataModelshowed != null) {
-            datashowed = dataModelshowed.filter(item => {
-                return item.indexOf(e.target.value.toUpperCase()) != -1;
+        else if (value == "model") {
+            datashowed = allDataModelshowed.filter(item => {
+                return item.toUpperCase().indexOf(e.target.value.toUpperCase()) != -1;
             });
             setDataModelshowed(datashowed)
         }
@@ -139,8 +140,8 @@ const Selector = (props) => {
                             onChange={(event) => handleChange(event, "model")}
                         />
                         { dataModelshowed ? dataModelshowed.map((item) =>
-                            <div className={styles.option} key={item} onClick={() => selectModel(item, makeSel)}>
-                                {item}
+                            <div className={styles.option} key={item} onClick={() => selectModel(item.toUpperCase(), makeSel)}>
+                                {item.toUpperCase()}
                             </div>
                         ) : <p>No Models found</p>
                         }
