@@ -62,6 +62,7 @@ const Selector = (props) => {
                 if( data.length != 0 ) {
                     console.log("data hm", data, data.length)
                     context.updateValue("vehicles", data)
+                    context.updateValue("vehiclesToShow", data.slice(0,10))
                 }
                
             })

@@ -47,3 +47,33 @@
     max-width: 40%;
     height: auto;
   }
+
+
+  .btnMore{
+    padding:1em 1.2em;
+    margin-top: 0.3em;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    background-color: rgb(126, 87, 194);
+    text-align:center;
+    transition: all 0.2s;
+    border: 0;
+    width: 50px;
+    height: 50px;
+    display: grid;
+    grid-template-areas: "select";
+    grid-auto-flow: column;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    display: inline-block;
+    
+  }
+
+  .btnContainer{
+    /* display: flex; */
+    justify-content: center;
+    padding-bottom: 5%;
+  }

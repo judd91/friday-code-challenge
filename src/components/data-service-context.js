@@ -11,7 +11,8 @@ export default class DataContextProvider extends Component {
         makes: null,
         models: null,
         vehicles: null,
-        errorMessage: null
+        errorMessage: null,
+        vehiclesToShow: null
     }
 
     componentDidMount(){
