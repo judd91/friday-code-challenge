@@ -48,7 +48,7 @@ export default class DataContextProvider extends Component {
                 </DataContext.Provider>)}
                 {
                     this.state.errorMessage ? (
-                        <div>{this.state.errorMessage}</div>
+                        <div>There is an error!: {this.state.errorMessage}</div>
                     ) : <a></a>
                 }
             </div>

@@ -16,6 +16,10 @@ const Selector = (props) => {
     const [isOpenModels, setOpensModels] = useState(false)
     const [modelSelection, setModel] = useState("Select Model..")
 
+    const [isFilters, setFilters] = useState(false)
+    const [isOpenFilters, setOpenFilters] = useState(false)
+
+
     var [datashowed, setDatashowed] = useState(completeMakesData);
     var [dataModelshowed, setDataModelshowed] = useState();
     var [allDataModelshowed, setallDataModelshowed] = useState(dataModelshowed);
@@ -28,47 +32,78 @@ const Selector = (props) => {
         var p = make.toLowerCase()
 
         if (model == null) {
+            // context.updateValue("loading", true)
             const url = "http://localhost:8080/api/models?make=" + p
             console.log("url makes", url)
 
             fetch(url).then(async response => {
-                const data = await response.json();
+
                 if (!response.ok) {
-                    const error = (data && data.message) || response.statusText;
-                    return Promise.reject(error);
+                    throw await response
+
+                    // const error = {
+                    //     type: 'Error',
+                    //     message: response.message || 'Something went wrong',
+                    //     data: response.status || '',
+                    //     code: response.statusText || '',
+                    //   };
+                    // console.log("e", error)
+                    // context.updateValue("errorMessage", response.message )
+                    // throw new Error('Something went wrong', error )
+                    // return Promise.reject(error);
                 }
+                const data = await response.json();
                 if( data.length != 0 ) {
                     context.updateValue("models", data)
                     setDataModelshowed(data)
                     setallDataModelshowed(data)
-
+    
+                    
+                    context.updateValue("loading", false)
                 }
+               
+
                
             })
             .catch(error => {
                 // this.setState({ errorMessage: error.toString() })
-                console.error('There was an error!', error)
+                console.error('There was an error!', error.status, " ", error.statusText)
+                const message = [error.statusText, error.status ]
+                context.updateValue("errorMessage", message )
+
             });
-        } else if( model != null && dataModelshowed ){
+
+            } else if( model != null && dataModelshowed ){
+                // context.updateValue("loading", true)
+
             const url = "http://localhost:8080/api/vehicles?make=" + model.toLowerCase() + "&model=" + p
             console.log("url models", url)
 
             fetch(url).then(async response => {
                 const data = await response.json();
+                console.log(response.status)
                 if (!response.ok) {
-                    const error = (data && data.message) || response.statusText;
-                    return Promise.reject(error);
+                    throw await response
+                    // const error = (data && data.message) || response.statusText;
+                    // return Promise.reject(error);
                 }
                 if( data.length != 0 ) {
                     console.log("data hm", data, data.length)
                     context.updateValue("vehicles", data)
                     context.updateValue("vehiclesToShow", data.slice(0,10))
                 }
-               
-            })
-            .catch( error => {
+                context.updateValue("loading", false)
+            }
+    //         , error => {
+    //             this.setState({ errorMessage: error.toString() })
+    //             console.error('There was an error2!', error)
+    //    })
+            ).catch( error => {
                     // this.setState({ errorMessage: error })
                     console.error('There was an error!', error)
+                    console.log(error)
+                    const message = [error.statusText, error.status ]
+                    context.updateValue("errorMessage", message )
             });
         } 
     }
@@ -84,6 +119,9 @@ const Selector = (props) => {
         context.updateValue("vehicles", null)
         setDataModelshowed(null)
         setOpensModels(false)
+        context.updateValue("errorMessage", null )
+        context.updateValue("vehiclesToShow", null)
+
     }
 
     function selectModel(item1, item2) {
@@ -92,6 +130,11 @@ const Selector = (props) => {
         setModel(item1)
         runFetch(item1, item2)
         context.updateValue("vehicles", null)
+        // setOpenFilters(true)
+        setFilters(true)
+        // context.updateValue("loading", true)
+        context.updateValue("vehiclesToShow", null)
+        context.updateValue("errorMessage", null )
 
     }
 
@@ -145,7 +188,27 @@ const Selector = (props) => {
                             </div>
                         ) : <p>No Models found</p>
                         }
-                    </div> : <div></div>}
+                     </div> : <div></div>}
+                {/* {isFilters ? <button className={styles.filterbox} onClick={() => setOpenFilters(!isOpenFilters)}> Filters </button> 
+                    : <div></div>
+                } */}
+                {/* {isOpenFilters ?
+                    <div id="myDropdown" className={styles.optionscontainer}>
+                       
+                       <form>
+                       <div className={styles.formRow}>
+                            <div className={styles.col1}>
+                                <label>Engine Power PS:</label>
+                            </div>
+                            <div className={styles.col2}>
+                                <input type="text" id="fname" name="EnginePowerPS" placeholder="Your Engine Power PS ..."/>
+                            </div>
+                        </div>
+                        <div className={styles.formRow}>
+                            <input type="submit" value="Submit"/>
+                        </div>
+                       </form>
+                    </div>  : <div></div>}  */}
             </div>
         )}
         </DataContext.Consumer>

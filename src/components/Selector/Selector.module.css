@@ -74,6 +74,30 @@
     text-decoration: underline;
     cursor: pointer;
   }
+
+  .col1 {
+    float: left;
+    width: 25%;
+    margin-top: 6px;
+  }
+  
+  .col2 {
+    float: left;
+    width: 75%;
+    margin-top: 6px;
+  }
+  .formRow:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  @media screen and (max-width: 500px) {
+    .col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
 /* .optionscontainer {
     background: #2f3640;
     color: #f5f6fa;

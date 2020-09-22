@@ -82,6 +82,20 @@
     display: none;
   }
 
+  .errorAlert{
+    display: flex;
+    flex-direction: column;
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    border-radius: 1em;
+    border-color: rgb(250, 114, 144) ;
+    background-color: rgb(250,224,224);
+    border-style: solid;
+    padding: 5%;  
+    margin: 0 5% 5% 5%;
+    /* width: 100% */
+    ;}
+
   @media screen and (max-width: 300px) {
     .btnMore{
       width: 50px; 
@@ -91,5 +105,10 @@
     }
     .plusicon{
       display: block;
+    }
+    .errorAlert{
+      width: 100%;
+      display: block;
+      /* margin-bottom: 20px; */
     }
 }
