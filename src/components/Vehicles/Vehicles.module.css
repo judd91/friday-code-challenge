@@ -7,7 +7,6 @@
   }
   
   .row {
-    /* overflow-y: scroll; */
     margin: 0 -5px;
     display: flex;
     flex-direction: row;
@@ -32,7 +31,6 @@
   .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     padding: 16px;
-    /* text-align: center; */
     background-color: #f1f1f1;
   }
   .column button {
@@ -65,7 +63,6 @@
     padding:1em 1.2em;
     margin-top: 0.3em;
     text-decoration:none;
-    /* font-family:'Roboto',sans-serif; */
     font-weight:300;
     color:#FFFFFF;
     background-color: rgb(126, 87, 194);
@@ -107,26 +104,16 @@
 }
 
 .btnGoTop{
-  /* border-radius: 1em;  */
   margin-top: 30px;
   color: rgb(126, 87, 194);
   cursor: pointer;
-  /* align-items: center; */
-  /* width: fit-content; */
-  /* display: inline-block; */
   position: fixed;
   bottom: 50px;
   right: 3%; 
   background-color: rgb(255, 226, 79);
-
-  /* padding: 0 50 0 50 ; */
-  /* margin-top: 0.3em; */
   border-radius: 2em;
   height: 30px;
   width: 30px; 
-
-
-  
 }
 .btnGoTop:hover{
   color: rgb(103,52,186);

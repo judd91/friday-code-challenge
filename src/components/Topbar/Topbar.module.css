@@ -1,32 +1,11 @@
-/* .topnav {
-  position: fixed;
-  overflow: hidden;
-  background-color: #333;
-  width: 100%;
-}
-  
-.topnav h3 {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 6px 8px;
-  text-decoration: none;
-}
-.containernav{
-  height: 100%;
-} */
+
 .topnav {
   width: 100%;
-  /* padding: 1rem; */
-  /* margin: .5rem 1rem; */
   text-align: center;
   transition: 200ms; 
   display: block;
   color: rgb(54,49,69);
-  /* color: rgb(255, 226, 79); */
   background: #fff;
-  /* background:  rgb(126, 87, 194); */
   text-transform: uppercase;
   position: fixed;
   top: 0;

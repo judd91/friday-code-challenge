@@ -5,22 +5,33 @@ import { DataContext } from '../data-service-context'
 const Selector = (props) => {
     let context = useContext(DataContext);
     const completeMakesData = context.state.makes
-    //Manage dropdown
+    /* Manage dropdown */
     const [isOpen, setOpen] = useState(false);
-    //Selections
+    /* Select Make */
     const [makeSel, setMake] = useState("Select Make..")
-    //Show models
+    /* Show models */
     const [isModels, setModels] = useState(false)
     const [isOpenModels, setOpensModels] = useState(false)
     const [modelSelection, setModel] = useState("Select Model..")
 
-    // const [isFilters, setFilters] = useState(false)
-    // const [isOpenFilters, setOpenFilters] = useState(false)
-
+    /* Show Make Options Data */
     var [datashowed, setDatashowed] = useState(completeMakesData);
+
+    /* Show Vehicle Data */
     var [dataModelshowed, setDataModelshowed] = useState();
     var [allDataModelshowed, setallDataModelshowed] = useState(dataModelshowed);
 
+    
+    // const [isFilters, setFilters] = useState(false)
+    // const [isOpenFilters, setOpenFilters] = useState(false)
+
+    /**
+     * runFetch() :
+     *  - make API requests given the parameters
+     *  - hadle errors
+     * @param {*} make 
+     * @param {*} model 
+     */
     async function runFetch(make, model) {
         var p = make.toLowerCase()
 
@@ -38,8 +49,6 @@ const Selector = (props) => {
                     context.updateValue("models", data)
                     setDataModelshowed(data)
                     setallDataModelshowed(data)
-
-
                     context.updateValue("loading", false)
                 }
             })
@@ -47,7 +56,6 @@ const Selector = (props) => {
                     console.error('There was an error!', error.status, " ", error.statusText)
                     const message = [error.statusText, error.status]
                     context.updateValue("errorMessage", message)
-
                 });
 
         } else if (model != null && dataModelshowed) {
@@ -69,35 +77,45 @@ const Selector = (props) => {
                 context.updateValue("loading", false)
             }
             ).catch(error => {
-                console.error('There was an error!', error)
-                console.log(error)
+                console.error('There was an error!', error.status, " ", error.statusText)
                 const message = [error.statusText, error.status]
                 context.updateValue("errorMessage", message)
             });
         }
     }
 
-    function selectMake(item) {
+
+   /**
+    * selectMake() : 
+       - Select Make and get the models from API gieven a car make
+    * @param {*} carMake 
+    */
+    function selectMake(carMake) {
         setOpen(!isOpen)
-        setMake(item)
+        setMake(carMake)
         setModels(true)
         setDatashowed(completeMakesData)
-        context.state.makeselection = item
-        runFetch(item, null)
+        context.state.makeselection = carMake
+        runFetch(carMake, null)
         setModel("Select Model..")
         context.updateValue("vehicles", null)
         setDataModelshowed(null)
         setOpensModels(false)
         context.updateValue("errorMessage", null)
         context.updateValue("vehiclesToShow", null)
-
     }
 
-    function selectModel(item1, item2) {
+   /**
+    * selectModel() : 
+    *  - Select Model and get the vehicles from API gieven a previous selected car make and model
+    * @param {*} carMake 
+    * @param {*} model 
+    */
+    function selectModel(carMake, model) {
         setDataModelshowed(allDataModelshowed)
         setOpensModels(!isOpenModels)
-        setModel(item1)
-        runFetch(item1, item2)
+        setModel(carMake)
+        runFetch(carMake, model)
         context.updateValue("vehicles", null)
         // setFilters(true)
         context.updateValue("vehiclesToShow", null)

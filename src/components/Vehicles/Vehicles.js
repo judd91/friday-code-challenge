@@ -10,6 +10,11 @@ const Vehicles = (props) => {
     const [currentNumberOfVehicles, setcurrentNumberOfVehicles] = useState(postsPerPage)
     let arrayForHoldingPosts = []
 
+    /**
+     * handleShowMorePosts()
+     * - Button to load more vehicles 
+     * @param {*} start 
+     */
     const handleShowMorePosts = (start) => {
         const slicedPosts = context.state.vehicles.slice(start, start + postsPerPage)
         arrayForHoldingPosts = context.state.vehiclesToShow.concat(slicedPosts)
@@ -18,6 +23,10 @@ const Vehicles = (props) => {
         context.updateValue("vehiclesToShow", arrayForHoldingPosts)
     }
 
+    /**
+     * handleScrollTop()
+     * - Go top when scroll
+     */
     const handleScrollTop = () => {
         document.getElementById("maincontainer").scrollTo({ top: 0, behavior: 'smooth' });
     }
@@ -25,7 +34,6 @@ const Vehicles = (props) => {
     return (
         <DataContext.Consumer>{context => (
             <div className={styles.vehicleContainer}>
-                {/* <p>Vehicles: {context.state.vehicles[0].make} {context.state.vehicles[0].model.toUpperCase()}</p> */}
                 <div className={styles.row}>
                     {context.state.loading || context.state.errorMessage ? (
                         <Error></Error>

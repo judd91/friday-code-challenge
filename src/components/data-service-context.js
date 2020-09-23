@@ -12,7 +12,9 @@ export default class DataContextProvider extends Component {
         vehiclesToShow: null
     }
 
-
+    /**
+     * Make first data car model load 
+     */
     async componentDidMount() {
         try {
 

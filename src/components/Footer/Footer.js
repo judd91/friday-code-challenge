@@ -4,11 +4,13 @@ import styles from './Footer.module.css';
 
 const Footer = (props) => {
     const [isActive, setActive] = useState(false)
+
+    /*  Collapsible About button */
     const handleAboutBtn = () => {
         setActive(!isActive)
     }
+
     return (
-        // <div className={styles.containernav}>
         <div className={styles.footer}>
             {isActive ?
                 <div className={styles.aboutcontent}>
@@ -20,7 +22,6 @@ const Footer = (props) => {
             }
             <h5 className={styles.btnAbout} onClick={() => handleAboutBtn()}>About </h5>
         </div>
-        // </div>
     )
 }
 
