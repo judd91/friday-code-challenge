@@ -1,6 +1,7 @@
-import React, { useState, useContext, useRef, useEffect } from "react"
+import React, { useState, useContext } from "react"
 import styles from './Vehicles.module.css';
 import { DataContext } from '../data-service-context'
+import Error from '../Error/Error'
 
 const Vehicles = (props) => {
     let context = useContext(DataContext);
@@ -10,10 +11,7 @@ const Vehicles = (props) => {
     let arrayForHoldingPosts = []
 
     const handleShowMorePosts = (start) => {
-        // console.log("vehicles", context.state.vehicles)
         const slicedPosts = context.state.vehicles.slice(start, start + postsPerPage)
-        // console.log("slicedPosts", slicedPosts)
-        // console.log("context.state.vehiclesToShow", context.state.vehiclesToShow)
         arrayForHoldingPosts = context.state.vehiclesToShow.concat(slicedPosts)
         setStart(start + postsPerPage)
         setcurrentNumberOfVehicles(arrayForHoldingPosts.length)
@@ -21,7 +19,7 @@ const Vehicles = (props) => {
     }
 
     const handleScrollTop = () => {
-        document.getElementById("maincontainer").scrollTo({top: 0, behavior: 'smooth'});
+        document.getElementById("maincontainer").scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     return (
@@ -30,26 +28,7 @@ const Vehicles = (props) => {
                 {/* <p>Vehicles: {context.state.vehicles[0].make} {context.state.vehicles[0].model.toUpperCase()}</p> */}
                 <div className={styles.row}>
                     {context.state.loading || context.state.errorMessage ? (
-                        <div className={styles.errorAlert}>
-                            {
-                                context.state.loading ? <div>Loading...</div> :
-                                    <div>
-                                        <div className={styles.errorAlert1}><b>ERROR! </b></div>
-                                        <div className={styles.errorAlert2}> Something went wrong! :( </div>
-                                        <div className={styles.errorAlert3}>
-                                            Code: {context.state.errorMessage[1]}
-                                            ,
-                                            Error: {context.state.errorMessage[0]}
-                                        </div>
-                                        {/* { 
-                                        alert("Something went wrong! :( Code:" +
-                                        context.state.errorMessage[1] +
-                                        "Error:" + context.state.errorMessage[0])
-                                      } */}
-                                    </div>
-                            }
-                        </div>
-
+                        <Error></Error>
                     ) : <div>
                             {context.state.vehiclesToShow ?
                                 <div className={styles.row}>
@@ -70,9 +49,8 @@ const Vehicles = (props) => {
                                     )
                                     }
                                 </div> : <div></div>
-                            } 
-
-                            </div>
+                            }
+                        </div>
                     }
                 </div>
                 <div>
@@ -83,9 +61,9 @@ const Vehicles = (props) => {
                                 <span className={styles.plusicon}>+</span>
                                 <span className={styles.buttonText}>Show more</span>
                             </button>
-                                              <div className={styles.btnGoTop} onClick={() => handleScrollTop()} ><i className={styles.arrowUp}> </i>
-                                              </div>
-                    
+                            <div className={styles.btnGoTop} onClick={() => handleScrollTop()} ><i className={styles.arrowUp}> </i>
+                            </div>
+
                         </div>
                         : <div></div>
                     }
