@@ -2,8 +2,6 @@ import React, { useState, useContext } from "react"
 import styles from './Selector.module.css';
 import { DataContext } from '../data-service-context'
 
-
-
 const Selector = (props) => {
     let context = useContext(DataContext);
     const completeMakesData = context.state.makes
@@ -16,18 +14,13 @@ const Selector = (props) => {
     const [isOpenModels, setOpensModels] = useState(false)
     const [modelSelection, setModel] = useState("Select Model..")
 
-    const [isFilters, setFilters] = useState(false)
-    const [isOpenFilters, setOpenFilters] = useState(false)
-
+    // const [isFilters, setFilters] = useState(false)
+    // const [isOpenFilters, setOpenFilters] = useState(false)
 
     var [datashowed, setDatashowed] = useState(completeMakesData);
     var [dataModelshowed, setDataModelshowed] = useState();
     var [allDataModelshowed, setallDataModelshowed] = useState(dataModelshowed);
 
-
-    // const [vehicles, setVehicles] = useState(null)
-
-    
     async function runFetch(make, model) {
         var p = make.toLowerCase()
 
@@ -41,23 +34,23 @@ const Selector = (props) => {
                     throw await response
                 }
                 const data = await response.json();
-                if( data.length != 0 ) {
+                if (data.length != 0) {
                     context.updateValue("models", data)
                     setDataModelshowed(data)
                     setallDataModelshowed(data)
-    
-                    
+
+
                     context.updateValue("loading", false)
                 }
             })
-            .catch(error => {
-                console.error('There was an error!', error.status, " ", error.statusText)
-                const message = [error.statusText, error.status ]
-                context.updateValue("errorMessage", message )
+                .catch(error => {
+                    console.error('There was an error!', error.status, " ", error.statusText)
+                    const message = [error.statusText, error.status]
+                    context.updateValue("errorMessage", message)
 
-            });
+                });
 
-            } else if( model != null && dataModelshowed ){
+        } else if (model != null && dataModelshowed) {
 
             const url = "http://localhost:8080/api/vehicles?make=" + model.toLowerCase() + "&model=" + p
             console.log("url models", url)
@@ -68,20 +61,20 @@ const Selector = (props) => {
                 if (!response.ok) {
                     throw await response
                 }
-                if( data.length != 0 ) {
+                if (data.length != 0) {
                     console.log("data hm", data, data.length)
                     context.updateValue("vehicles", data)
-                    context.updateValue("vehiclesToShow", data.slice(0,10))
+                    context.updateValue("vehiclesToShow", data.slice(0, 10))
                 }
                 context.updateValue("loading", false)
             }
-            ).catch( error => {
-                    console.error('There was an error!', error)
-                    console.log(error)
-                    const message = [error.statusText, error.status ]
-                    context.updateValue("errorMessage", message )
+            ).catch(error => {
+                console.error('There was an error!', error)
+                console.log(error)
+                const message = [error.statusText, error.status]
+                context.updateValue("errorMessage", message)
             });
-        } 
+        }
     }
 
     function selectMake(item) {
@@ -95,7 +88,7 @@ const Selector = (props) => {
         context.updateValue("vehicles", null)
         setDataModelshowed(null)
         setOpensModels(false)
-        context.updateValue("errorMessage", null )
+        context.updateValue("errorMessage", null)
         context.updateValue("vehiclesToShow", null)
 
     }
@@ -106,9 +99,9 @@ const Selector = (props) => {
         setModel(item1)
         runFetch(item1, item2)
         context.updateValue("vehicles", null)
-        setFilters(true)
+        // setFilters(true)
         context.updateValue("vehiclesToShow", null)
-        context.updateValue("errorMessage", null )
+        context.updateValue("errorMessage", null)
 
     }
 
@@ -119,7 +112,7 @@ const Selector = (props) => {
             });
             setDatashowed(datashowed)
         }
-        else if (value == "model" && allDataModelshowed ) {
+        else if (value == "model" && allDataModelshowed) {
             datashowed = allDataModelshowed.filter(item => {
                 return item.toUpperCase().indexOf(e.target.value.toUpperCase()) != -1;
             });
@@ -147,7 +140,7 @@ const Selector = (props) => {
                         }
                     </div> : <div></div>}
                 {isModels ?
-                    <button className={styles.selectbox1} onClick={() => setOpensModels(!isOpenModels)}>{ modelSelection }</button> : <div></div>
+                    <button className={styles.selectbox1} onClick={() => setOpensModels(!isOpenModels)}>{modelSelection}</button> : <div></div>
                 }
                 {isOpenModels ?
                     <div id="myDropdown" className={styles.optionscontainer}>
@@ -156,13 +149,13 @@ const Selector = (props) => {
                             placeholder="- Search -"
                             onChange={(event) => handleChange(event, "model")}
                         />
-                        { dataModelshowed ? dataModelshowed.map((item) =>
+                        {dataModelshowed ? dataModelshowed.map((item) =>
                             <div className={styles.option} key={item} onClick={() => selectModel(item.toUpperCase(), makeSel)}>
                                 {item.toUpperCase()}
                             </div>
                         ) : <p>No Models found</p>
                         }
-                     </div> : <div></div>}
+                    </div> : <div></div>}
                 {/* {isFilters ? <button className={styles.filterbox} onClick={() => setOpenFilters(!isOpenFilters)}> Filters </button> 
                     : <div></div>
                 } */}

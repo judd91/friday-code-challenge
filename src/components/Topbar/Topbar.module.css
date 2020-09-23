@@ -18,17 +18,18 @@
 } */
 .topnav {
   width: 100%;
-  padding: 1rem;
+  /* padding: 1rem; */
   /* margin: .5rem 1rem; */
   text-align: center;
   transition: 200ms; 
   display: block;
-  /* color: white; */
-  color: rgb(255, 226, 79);
-  /* background: gray; */
-  background:  rgb(126, 87, 194);
+  color: rgb(54,49,69);
+  /* color: rgb(255, 226, 79); */
+  background: #fff;
+  /* background:  rgb(126, 87, 194); */
   text-transform: uppercase;
   position: fixed;
   top: 0;
   z-index: 1;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }

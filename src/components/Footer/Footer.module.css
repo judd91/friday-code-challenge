@@ -1,16 +1,6 @@
-/* .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    text-align: center;
- } */
+
 .footer {
     width: 100%;
-    /* padding: 1rem; */
-    /* margin: .5rem 1rem; */
     text-align: center;
     transition: 200ms; 
     background: rgb(54,49,69);
@@ -18,3 +8,37 @@
     bottom: 0;
     color: #fff;
   }
+
+  .btnAbout:hover{
+      color: rgb(255, 226, 79);
+      text-decoration: underline;
+      cursor: pointer;
+  }
+
+  .arrowCollapse{
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    display: inline-block;
+    padding: 2px;
+    transform: rotate(46deg);
+    -webkit-transform: rotate(46deg);
+    position: relative;
+    float: right;
+    right: 20px;
+    top: 0px;
+  }
+  .arrowCollapse:hover{
+    border: solid rgb(255, 226, 79);
+    border-width: 0 2px 2px 0;
+
+    text-decoration: underline;
+    cursor: pointer;
+}
+.aboutContent{
+  position: relative;
+}
+
+.aboutCollapse{
+  float: right;
+  top: 0; 
+}
