@@ -1,5 +1,5 @@
 # Friday Code Challenge
-This is a React Application which allows to the user to get results from an API by selecting different parameters.
+This is a React Application which allows the user to get results from an API by selecting different parameters.
 
 ## Available Scripts
 
