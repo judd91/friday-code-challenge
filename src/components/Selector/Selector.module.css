@@ -1,4 +1,15 @@
-
+.resetbtn{
+  cursor: pointer;
+  width: fit-content;
+  color:#000;
+  background-color: white;
+  border-color: #000;
+  border-radius:2em;
+  margin-top: 0.3em;
+}
+.resetbtn:hover{
+  background-color: #f1f1f1;;
+}
 .selectbox1 {
   padding:1em 1.2em;
   margin-top: 0.3em;

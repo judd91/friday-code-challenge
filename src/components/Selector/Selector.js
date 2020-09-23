@@ -8,7 +8,7 @@ const Selector = (props) => {
     /* Manage dropdown */
     const [isOpen, setOpen] = useState(false);
     /* Select Make */
-    const [makeSel, setMake] = useState("Select Make..")
+    const [makeSel, setMake] = useState("Select Car Make..")
     /* Show models */
     const [isModels, setModels] = useState(false)
     const [isOpenModels, setOpensModels] = useState(false)
@@ -95,7 +95,7 @@ const Selector = (props) => {
         setMake(carMake)
         setModels(true)
         setDatashowed(completeMakesData)
-        context.state.makeselection = carMake
+        context.state.makeselection = null
         runFetch(carMake, null)
         setModel("Select Model..")
         context.updateValue("vehicles", null)
@@ -121,6 +121,22 @@ const Selector = (props) => {
         context.updateValue("vehiclesToShow", null)
         context.updateValue("errorMessage", null)
 
+    }
+
+    function reset(){
+        setOpen(false)
+        setMake(null)
+        setModels(false)
+        setDatashowed(completeMakesData)
+        context.state.makeselection = null
+        // runFetch(carMake, null)
+        setModel("Select Model..")
+        setMake("Select Car Make..")
+        context.updateValue("vehicles", null)
+        setDataModelshowed(null)
+        setOpensModels(false)
+        // context.updateValue("errorMessage", null)
+        context.updateValue("vehiclesToShow", null)
     }
 
     function handleChange(e, value) {
@@ -159,6 +175,7 @@ const Selector = (props) => {
                     </div> : <div></div>}
                 {isModels ?
                     <button className={styles.selectbox1} onClick={() => setOpensModels(!isOpenModels)}>{modelSelection}</button> : <div></div>
+                
                 }
                 {isOpenModels ?
                     <div id="myDropdown" className={styles.optionscontainer}>
@@ -174,6 +191,10 @@ const Selector = (props) => {
                         ) : <p>No Models found</p>
                         }
                     </div> : <div></div>}
+
+                {isModels ?
+                    <button className={styles.resetbtn} onClick={() => reset()}>Reset Values</button> : <div></div>
+                }
                 {/* {isFilters ? <button className={styles.filterbox} onClick={() => setOpenFilters(!isOpenFilters)}> Filters </button> 
                     : <div></div>
                 } */}
