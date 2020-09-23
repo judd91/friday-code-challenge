@@ -10,7 +10,7 @@ import DataContextProvider from '../data-service-context'
 const MainPage = (props) => {
     return (
     
-        <div className={styles.container}>
+        <div id="maincontainer" className={styles.container}>
             {/* <DataContextProvider > */}
                 <div className={styles.content}>
                     <div className={styles.row1}>

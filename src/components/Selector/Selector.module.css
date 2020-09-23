@@ -1,5 +1,4 @@
 
-
 .selectbox1 {
   /* display:inline-block; */
   padding:1em 1.2em;
@@ -33,6 +32,11 @@
 .selectbox1 .selectbox1::after {
   grid-area: select;
 }
+
+.selectbox1:hover{
+  background-color: rgb(103,52,186) ;
+}
+
 .selectbox {
     position: relative;
     display: flex;

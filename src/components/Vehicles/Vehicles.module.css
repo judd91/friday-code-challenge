@@ -35,6 +35,20 @@
     /* text-align: center; */
     background-color: #f1f1f1;
   }
+  .column button {
+    border: none;
+    outline: 0;
+    padding: 12px;
+    color: white;
+    background-color: rgb(54,49,69);
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+  }
+  .column button:hover {
+    opacity: 0.7;
+  }
 
   ul{
     list-style-type: none;
@@ -60,12 +74,7 @@
     text-align:center;
     transition: all 0.2s;
     border: 0;
-    /* width: 50px; */
     height: 50px;
-    /* display: grid;
-    grid-template-areas: "select";
-    grid-auto-flow: column;
-    align-items: center; */
     cursor: pointer;
     border-radius: 2em;
     display: inline-block;
@@ -73,7 +82,6 @@
   }
 
   .btnContainer{
-    /* display: flex; */
     justify-content: center;
     padding-bottom: 5%;
   }
@@ -85,7 +93,6 @@
   .errorAlert{
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     justify-content: center;
     border-radius: 1em;
     border-color: rgb(250, 114, 144) ;
@@ -93,7 +100,6 @@
     border-style: solid;
     padding: 5%;  
     margin: 0 5% 5% 5%;
-    /* width: 100% */
     ;}
 
   @media screen and (max-width: 300px) {
@@ -109,6 +115,46 @@
     .errorAlert{
       width: 100%;
       display: block;
-      /* margin-bottom: 20px; */
     }
+}
+
+.btnGoTop{
+  /* border-radius: 1em;  */
+  margin-top: 30px;
+  color: rgb(126, 87, 194);
+  cursor: pointer;
+  /* align-items: center; */
+  /* width: fit-content; */
+  /* display: inline-block; */
+  position: fixed;
+  bottom: 50px;
+  right: 3%; 
+  background-color: rgb(255, 226, 79);
+
+  /* padding: 0 50 0 50 ; */
+  /* margin-top: 0.3em; */
+  border-radius: 2em;
+  height: 30px;
+  width: 30px; 
+
+
+  
+}
+.btnGoTop:hover{
+  color: rgb(103,52,186);
+  text-decoration: underline;
+}
+
+.arrowUp:hover{
+  color: rgb(103,52,186);
+  text-decoration: underline;
+}
+
+.arrowUp{
+  border: solid rgb(126, 87, 194);
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
 }

@@ -32,7 +32,6 @@ const Selector = (props) => {
         var p = make.toLowerCase()
 
         if (model == null) {
-            // context.updateValue("loading", true)
             const url = "http://localhost:8080/api/models?make=" + p
             console.log("url makes", url)
 
@@ -40,17 +39,6 @@ const Selector = (props) => {
 
                 if (!response.ok) {
                     throw await response
-
-                    // const error = {
-                    //     type: 'Error',
-                    //     message: response.message || 'Something went wrong',
-                    //     data: response.status || '',
-                    //     code: response.statusText || '',
-                    //   };
-                    // console.log("e", error)
-                    // context.updateValue("errorMessage", response.message )
-                    // throw new Error('Something went wrong', error )
-                    // return Promise.reject(error);
                 }
                 const data = await response.json();
                 if( data.length != 0 ) {
@@ -61,12 +49,8 @@ const Selector = (props) => {
                     
                     context.updateValue("loading", false)
                 }
-               
-
-               
             })
             .catch(error => {
-                // this.setState({ errorMessage: error.toString() })
                 console.error('There was an error!', error.status, " ", error.statusText)
                 const message = [error.statusText, error.status ]
                 context.updateValue("errorMessage", message )
@@ -74,7 +58,6 @@ const Selector = (props) => {
             });
 
             } else if( model != null && dataModelshowed ){
-                // context.updateValue("loading", true)
 
             const url = "http://localhost:8080/api/vehicles?make=" + model.toLowerCase() + "&model=" + p
             console.log("url models", url)
@@ -84,8 +67,6 @@ const Selector = (props) => {
                 console.log(response.status)
                 if (!response.ok) {
                     throw await response
-                    // const error = (data && data.message) || response.statusText;
-                    // return Promise.reject(error);
                 }
                 if( data.length != 0 ) {
                     console.log("data hm", data, data.length)
@@ -94,12 +75,7 @@ const Selector = (props) => {
                 }
                 context.updateValue("loading", false)
             }
-    //         , error => {
-    //             this.setState({ errorMessage: error.toString() })
-    //             console.error('There was an error2!', error)
-    //    })
             ).catch( error => {
-                    // this.setState({ errorMessage: error })
                     console.error('There was an error!', error)
                     console.log(error)
                     const message = [error.statusText, error.status ]
@@ -130,9 +106,7 @@ const Selector = (props) => {
         setModel(item1)
         runFetch(item1, item2)
         context.updateValue("vehicles", null)
-        // setOpenFilters(true)
         setFilters(true)
-        // context.updateValue("loading", true)
         context.updateValue("vehiclesToShow", null)
         context.updateValue("errorMessage", null )
 
@@ -145,7 +119,7 @@ const Selector = (props) => {
             });
             setDatashowed(datashowed)
         }
-        else if (value == "model") {
+        else if (value == "model" && allDataModelshowed ) {
             datashowed = allDataModelshowed.filter(item => {
                 return item.toUpperCase().indexOf(e.target.value.toUpperCase()) != -1;
             });
